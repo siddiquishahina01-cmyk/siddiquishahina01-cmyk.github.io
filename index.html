@@ -150,9 +150,10 @@ permalink: /
         {%- endfor -%}
       {%- endif -%}
 
-      {%- if media.size == 0 and site.data.videos.size == 0 -%}
-        <p class="empty">No uploads yet. Create <code>/uploads</code> and <code>/videos</code> folders and add files, or add YouTube IDs to <code>_data/videos.yml</code>.</p>
-      {%- endif -%}
+      {%- assign vids_count = site.data.videos | default: empty | size -%}
+{%- if media.size == 0 and vids_count == 0 -%}
+  <p class="empty">No uploads yet. Create <code>/uploads</code> and <code>/videos</code> folders and add files, or add YouTube IDs to <code>_data/videos.yml</code>.</p>
+{%- endif -%}
     </main>
 
     <footer>
