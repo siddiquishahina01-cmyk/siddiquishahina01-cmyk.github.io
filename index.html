@@ -106,7 +106,10 @@ permalink: /
         • GitHub Pages will rebuild and this page will automatically list new files, newest first
       {%- endcomment -%}
 
-      {%- assign media = site.static_files | where_exp: "f", "f.path contains '/uploads/' or f.path contains '/videos/'" | sort: "modified_time" | reverse -%}
+      {%- assign uploads = site.static_files | where_exp: "f", "f.path contains '/uploads/'" -%}
+{%- assign vids    = site.static_files | where_exp: "f", "f.path contains '/videos/'"  -%}
+{%- assign media   = uploads | concat: vids | sort: "modified_time" | reverse -%}
+
       {%- for f in media -%}
         {%- assign ext = f.extname | downcase -%}
         {%- assign when = f.modified_time | date: "%b %d, %Y" -%}
