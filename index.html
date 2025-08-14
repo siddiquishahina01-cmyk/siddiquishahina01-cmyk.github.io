@@ -1,0 +1,210 @@
+---
+# YAML front matter enables Jekyll/Liquid processing on GitHub Pages
+# Change the title/description to your details
+layout: none
+title: "Shahina Siddiqui — Portfolio"
+description: "A living portfolio of images and videos, updated daily."
+permalink: /
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ page.title }}</title>
+  <meta name="description" content="{{ page.description }}" />
+  <link rel="canonical" href="{{ "/" | absolute_url }}" />
+  <meta property="og:title" content="{{ page.title }}" />
+  <meta property="og:description" content="{{ page.description }}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ "/" | absolute_url }}" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <style>
+    :root {
+      --bg: #0b0e12;
+      --card: #11151b;
+      --muted: #a3b1c2;
+      --text: #e8eef7;
+      --brand: #0ea5e9;
+      --ring: rgba(14,165,233,.35);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji","Segoe UI Emoji"; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 24px; }
+    header { display: grid; gap: 12px; align-items: center; grid-template-columns: 1fr; padding: 24px 0 8px; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #38bdf8, #818cf8); display: inline-grid; place-items: center; font-weight: 700; color: #0b0e12; }
+    .title { font-size: clamp(22px, 3.5vw, 34px); margin: 0; font-weight: 800; letter-spacing: .2px; }
+    .subtitle { margin: 0; color: var(--muted); font-size: 15px; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+    .btn { padding: 10px 14px; border-radius: 999px; background: #0f1722; border: 1px solid #1e2632; color: var(--text); font-weight: 600; }
+    .btn:hover { border-color: #2a3444; }
+    .btn.primary { background: radial-gradient(120% 120% at 10% 10%, #38bdf8 0%, #0ea5e9 35%, #3b82f6 100%); color: #071019; box-shadow: 0 0 0 6px var(--ring); }
+
+    nav { display: flex; gap: 8px; margin: 18px 0 8px; border: 1px solid #1e2632; background: #0f1722; padding: 6px; border-radius: 999px; width: fit-content; }
+    .filter { border: 0; background: transparent; color: var(--muted); padding: 8px 12px; border-radius: 999px; cursor: pointer; font-weight: 600; }
+    .filter[aria-pressed="true"] { background: #152032; color: var(--text); }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+    .card { background: var(--card); border: 1px solid #1e2632; border-radius: 18px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,.2); }
+    .figure { position: relative; aspect-ratio: 4/3; display: grid; place-items: center; }
+    img, video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .meta { padding: 10px 12px 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .date { color: var(--muted); font-size: 12px; }
+    .tag { font-size: 11px; padding: 6px 8px; border: 1px solid #253140; border-radius: 999px; color: #b6c2d2; background: #121a27; }
+
+    footer { color: var(--muted); font-size: 13px; padding: 32px 0 16px; text-align: center; }
+
+    /* Lightbox */
+    dialog#lightbox { border: 0; padding: 0; border-radius: 18px; overflow: hidden; background: #0a0d12; }
+    dialog::backdrop { background: rgba(2,7,16,.7); }
+    .lightbox-wrap { position: relative; max-width: min(92vw, 1160px); max-height: 86vh; }
+    .lightbox-media { display: block; max-width: 100%; max-height: 86vh; width: auto; height: auto; }
+    .lightbox-close { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,.6); border: 1px solid #2b3646; color: white; border-radius: 999px; padding: 8px 11px; cursor: pointer; font-weight: 700; }
+
+    /* Small helper labels */
+    .empty { color: var(--muted); text-align: center; padding: 40px 0; border: 1px dashed #2a3444; border-radius: 14px; }
+
+    @media (min-width: 720px) {
+      header { grid-template-columns: 1fr auto; }
+      .actions { justify-content: flex-end; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="sr-only" href="#gallery">Skip to gallery</a>
+
+    <header>
+      <div>
+        <div class="brand">
+          <div class="avatar" aria-hidden="true">SS</div>
+          <div>
+            <h1 class="title">{{ page.title }}</h1>
+            <p class="subtitle">Daily drops of design, visuals, and short reels. Curated by me.</p>
+          </div>
+        </div>
+        <nav aria-label="Filter gallery">
+          <button class="filter" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter" data-filter="image" aria-pressed="false">Images</button>
+          <button class="filter" data-filter="video" aria-pressed="false">Videos</button>
+        </nav>
+      </div>
+      <div class="actions">
+        <a class="btn" href="mailto:hello@example.com" title="Email">Email</a>
+        <a class="btn primary" href="https://www.linkedin.com/" target="_blank" rel="noopener" title="LinkedIn">Connect</a>
+      </div>
+    </header>
+
+    <main id="gallery" class="grid" aria-live="polite">
+      {%- comment -%}
+        HOW THIS WORKS
+        • Put images (jpg, png, webp, gif) inside /uploads/
+        • Put small videos (mp4, webm, mov; < 100 MB each) inside /videos/
+        • For bigger videos, add YouTube IDs to _data/videos.yml (see the bottom of this file for an example)
+        • GitHub Pages will rebuild and this page will automatically list new files, newest first
+      {%- endcomment -%}
+
+      {%- assign media = site.static_files | where_exp: "f", "f.path contains '/uploads/' or f.path contains '/videos/'" | sort: "modified_time" | reverse -%}
+      {%- for f in media -%}
+        {%- assign ext = f.extname | downcase -%}
+        {%- assign when = f.modified_time | date: "%b %d, %Y" -%}
+        {%- if ext == ".jpg" or ext == ".jpeg" or ext == ".png" or ext == ".webp" or ext == ".gif" -%}
+          <article class="card" data-type="image">
+            <div class="figure">
+              <img src="{{ f.path | relative_url }}" alt="{{ f.basename | replace: '-', ' ' | replace: '_', ' ' }}" loading="lazy" data-enlarge="true" />
+            </div>
+            <div class="meta">
+              <span class="date">{{ when }}</span>
+              <span class="tag">Image</span>
+            </div>
+          </article>
+        {%- elsif ext == ".mp4" or ext == ".webm" or ext == ".mov" -%}
+          <article class="card" data-type="video">
+            <div class="figure">
+              <video preload="metadata" controls playsinline>
+                <source src="{{ f.path | relative_url }}" type="video/{{ ext | remove: '.' }}" />
+              </video>
+            </div>
+            <div class="meta">
+              <span class="date">{{ when }}</span>
+              <span class="tag">Video</span>
+            </div>
+          </article>
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- if site.data.videos and site.data.videos.size > 0 -%}
+        {%- for v in site.data.videos -%}
+          <article class="card" data-type="video">
+            <div class="figure">
+              <iframe class="yt" title="YouTube video" width="560" height="315"
+                src="https://www.youtube.com/embed/{{ v.youtube_id }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="meta">
+              <span class="date">{{ v.date | default: "YouTube" }}</span>
+              <span class="tag">YouTube</span>
+            </div>
+          </article>
+        {%- endfor -%}
+      {%- endif -%}
+
+      {%- if media.size == 0 and site.data.videos.size == 0 -%}
+        <p class="empty">No uploads yet. Create <code>/uploads</code> and <code>/videos</code> folders and add files, or add YouTube IDs to <code>_data/videos.yml</code>.</p>
+      {%- endif -%}
+    </main>
+
+    <footer>
+      © <span id="year"></span> {{ page.title }} · Built with GitHub Pages · Updated automatically when you add new media
+    </footer>
+  </div>
+
+  <dialog id="lightbox" aria-label="Enlarged media">
+    <div class="lightbox-wrap">
+      <button class="lightbox-close" onclick="document.getElementById('lightbox').close()">×</button>
+      <img id="lightbox-img" class="lightbox-media" alt="" />
+    </div>
+  </dialog>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Filtering
+    const buttons = Array.from(document.querySelectorAll('.filter'));
+    const cards = Array.from(document.querySelectorAll('.card'));
+    function applyFilter(type) {
+      cards.forEach(card => {
+        const show = type === 'all' || card.dataset.type === type;
+        card.style.display = show ? '' : 'none';
+      });
+    }
+    buttons.forEach(btn => btn.addEventListener('click', e => {
+      buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      applyFilter(btn.dataset.filter);
+    }));
+
+    // Lightbox for images
+    const dlg = document.getElementById('lightbox');
+    const dlgImg = document.getElementById('lightbox-img');
+    document.addEventListener('click', (e) => {
+      const img = e.target.closest('img[data-enlarge]');
+      if (!img) return;
+      dlgImg.src = img.src;
+      dlgImg.alt = img.alt || '';
+      if (typeof dlg.showModal === 'function') dlg.showModal();
+    });
+  </script>
+</body>
+</html>
+
+<!-- --------- _data/videos.yml (create this file in a folder named _data) ---------
+# Add big/hosted videos here (YouTube/Vimeo). One item per line.
+# Example:
+# - title: "Demo Reel 2025"
+#   youtube_id: dQw4w9WgXcQ
+#   date: "Aug 14, 2025"
+
+---------------------------------------------------------------------------- -->
